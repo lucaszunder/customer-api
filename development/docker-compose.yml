@@ -1,0 +1,19 @@
+version: "3.8"
+
+services:
+  localstack:
+    container_name: 'localstack'
+    image: localstack/localstack
+    ports:
+      - "4566:4566"            
+      - "4510-4559:4510-4559"
+    environment:
+      - SERVICES=apigateway,lambda,dynamodb
+      - AWS_DEFAULT_REGION=us-east-1
+      - USE_SINGLE_REGION=1
+      - EDGE_PORT=4566
+      - DEBUG=1
+    volumes:
+      - "${TEMPDIR:-/tmp/localstack}:/var/lib/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    working_dir: /localstack

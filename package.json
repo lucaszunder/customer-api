@@ -1,0 +1,23 @@
+{
+  "name": "customer-api",
+  "version": "1.0.0",
+  "description": "search GET /customers?query",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lucaszunder/customer-api.git"
+  },
+  "author": "Lucas Zunder",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lucaszunder/customer-api/issues"
+  },
+  "homepage": "https://github.com/lucaszunder/customer-api#readme",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
