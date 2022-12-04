@@ -51,16 +51,15 @@ module "lambda" {
 module "apigateway" {
   source = "./modules/apigateway"
 
-  lambda_upsertcustomer_invokearn = module.lambda.lambda_upsertcustomer_invokearn
+  lambda_createcustomer_invokearn = module.lambda.lambda_createcustomer_invokearn
   lambda_listcustomer_invokearn   = module.lambda.lambda_listcustomer_invokearn
   lambda_getcustomer_invokearn    = module.lambda.lambda_getcustomer_invokearn
   lambda_deletecustomer_invokearn = module.lambda.lambda_deletecustomer_invokearn
 }
 
-# module "dynamodb" {
-#   source = "./terraform/dynamodb"
-# }
-
+module "dynamodb" {
+  source = "./modules/dynamodb"
+}
 
 output "main_url" {
   description = "Endpoint do API Gateway"

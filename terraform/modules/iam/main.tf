@@ -7,6 +7,7 @@ resource "aws_iam_role" "lambda" {
       Effect = "Allow"
       Principal = {
         Service = [
+          "dynamodb.amazonaws.com",
           "lambda.amazonaws.com",
           "apigateway.amazonaws.com"
         ]

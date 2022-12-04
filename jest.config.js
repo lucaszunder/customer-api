@@ -13,7 +13,7 @@ module.exports = {
     './node_modules/',
     './docs/',
     './tests/',
-    './dist/',
+    './build/',
     './terraform/',
     'src/api.ts',
     './development',

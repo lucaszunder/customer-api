@@ -1,5 +1,5 @@
-output "lambda_upsertcustomer_invokearn" {
-  value = aws_lambda_function.upsertcustomer.invoke_arn
+output "lambda_createcustomer_invokearn" {
+  value = aws_lambda_function.createcustomer.invoke_arn
 }
 
 output "lambda_listcustomer_invokearn" {

@@ -14,19 +14,19 @@ resource "aws_api_gateway_resource" "customers_id" {
   path_part   = "{id+}"
 }
 
-resource "aws_api_gateway_method" "upsertcustomer" {
+resource "aws_api_gateway_method" "createcustomer" {
   rest_api_id   = aws_api_gateway_rest_api.api.id
-  resource_id   = aws_api_gateway_resource.customers_id.id
-  http_method   = "PUT"
+  resource_id             = aws_api_gateway_resource.customers.id
+  http_method   = "POST"
   authorization = "NONE"
 }
 
-resource "aws_api_gateway_integration" "upsertcustomer" {
+resource "aws_api_gateway_integration" "createcustomer" {
   rest_api_id             = aws_api_gateway_rest_api.api.id
-  resource_id             = aws_api_gateway_resource.customers_id.id
-  http_method             = aws_api_gateway_method.upsertcustomer.http_method
+  resource_id             = aws_api_gateway_resource.customers.id
+  http_method             = aws_api_gateway_method.createcustomer.http_method
   type                    = "AWS_PROXY"
-  uri                     = var.lambda_upsertcustomer_invokearn
+  uri                     = var.lambda_createcustomer_invokearn
   integration_http_method = "POST"
 }
 
@@ -47,16 +47,16 @@ resource "aws_api_gateway_integration" "getcustomer" {
 }
 
 resource "aws_api_gateway_method" "listcustomer" {
+  resource_id             = aws_api_gateway_resource.customers.id
   rest_api_id   = aws_api_gateway_rest_api.api.id
-  resource_id   = aws_api_gateway_resource.customers_id.id
   http_method   = "GET"
   authorization = "NONE"
 }
 
 resource "aws_api_gateway_integration" "listcustomer" {
   rest_api_id             = aws_api_gateway_rest_api.api.id
-  resource_id             = aws_api_gateway_resource.customers_id.id
   http_method             = aws_api_gateway_method.listcustomer.http_method
+  resource_id             = aws_api_gateway_resource.customers.id
   type                    = "AWS_PROXY"
   uri                     = var.lambda_listcustomer_invokearn
   integration_http_method = "POST"
@@ -83,8 +83,8 @@ resource "aws_api_gateway_deployment" "main" {
   rest_api_id = aws_api_gateway_rest_api.api.id
   stage_name  = "main"
   depends_on = [
-    aws_api_gateway_method.upsertcustomer,
-    aws_api_gateway_integration.upsertcustomer,
+    aws_api_gateway_method.createcustomer,
+    aws_api_gateway_integration.createcustomer,
     aws_api_gateway_method.getcustomer,
     aws_api_gateway_integration.getcustomer,
     aws_api_gateway_method.listcustomer,
