@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest --bail --forceExit --passWithNoTests",
-    "build": "tsc --project tsconfig.json",
+    "build": "tsc --project tsconfig.json --skipLibCheck",
     "pre:zip": "rm -f ./terraform/build.zip && yarn build && cp package*.json build/",
-    "zip": "yarn pre:zip && cd build && yarn && zip -r ../terraform/build.zip .",
+    "zip": "yarn pre:zip && cd build && yarn --production=true && zip -r ../terraform/build.zip .",
     "format": "eslint --fix . && prettier --write ."
   },
   "repository": {
@@ -23,13 +23,15 @@
   "dependencies": {
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1267.0",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.0.3",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
     "@types/aws-lambda": "^8.10.109",
     "@types/jest": "^29.2.0",
     "@types/node": "^18.11.4",
+    "@types/uuidv4": "^5.0.0",
     "@typescript-eslint/eslint-plugin": "^5.40.1",
     "@typescript-eslint/parser": "^5.40.1",
     "eslint": "^8.26.0",
