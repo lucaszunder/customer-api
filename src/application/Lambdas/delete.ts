@@ -1,12 +1,16 @@
 import { Context, APIGatewayProxyCallback, APIGatewayEvent } from 'aws-lambda';
+import DeleteCustomerFactory from '../../infra/factories/DeleteCustomerFactory';
 
-export const handler = (event: APIGatewayEvent, context: Context, callback: APIGatewayProxyCallback): void => {
-    console.log(`Event: ${JSON.stringify(event, null, 2)}`);
-    console.log(`Context: ${JSON.stringify(context, null, 2)}`);
-    callback(null, {
-        statusCode: 200,
-        body: JSON.stringify({
-            message: 'hello Lambda',
-        }),
-    });
+export const handler = async (
+  event: APIGatewayEvent,
+  _context: Context,
+  callback: APIGatewayProxyCallback,
+): Promise<void> => {
+  const customerId = event?.pathParameters?.id;
+
+  const deleteCustomer = new DeleteCustomerFactory().make();
+
+  const customerResponse = await deleteCustomer.handle(customerId);
+
+  callback(null, customerResponse);
 };
