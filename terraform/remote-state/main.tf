@@ -1,5 +1,5 @@
 terraform {
-  required_version = ">= 1.4.0"
+  required_version = ">= 1.0.0"
     required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -22,6 +22,5 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "customers" {
-    bucket="customers"
-  
+    bucket="customers" 
 }

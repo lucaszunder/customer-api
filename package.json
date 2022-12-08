@@ -8,7 +8,9 @@
     "build": "tsc --project tsconfig.json --skipLibCheck",
     "pre:zip": "rm -f ./terraform/build.zip && yarn build && cp package*.json build/",
     "zip": "yarn pre:zip && cd build && yarn --production=true && zip -r ../terraform/build.zip .",
-    "format": "eslint --fix . && prettier --write ."
+    "format": "eslint --fix . && prettier --write .",
+    "publish:terraform": "cd terraform/remote-state && terraform init -input=false && terraform apply -input=false -auto-approve && cd .. && terraform init -input=false && terraform apply -input=false -auto-approve",
+    "deploy:localstack": "yarn zip && yarn publish:terraform"
   },
   "repository": {
     "type": "git",
@@ -24,6 +26,7 @@
     "aws-lambda": "^1.0.7",
     "aws-sdk": "^2.1267.0",
     "dotenv": "^16.0.3",
+    "http-status": "^1.5.3",
     "uuidv4": "^6.2.13"
   },
   "devDependencies": {

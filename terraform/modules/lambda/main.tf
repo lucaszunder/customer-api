@@ -8,6 +8,16 @@ resource "aws_lambda_function" "createcustomer" {
   publish          = true
 }
 
+resource "aws_lambda_function" "updatecustomer" {
+  function_name    = "updatecustomer"
+  role             = var.iam_role_arn
+  filename         = "build.zip"
+  source_code_hash = filebase64sha256("build.zip")
+  runtime          = "nodejs16.x"
+  handler          = "application/Lambdas/update.handler"
+  publish          = true
+}
+
 resource "aws_lambda_function" "listcustomer" {
   function_name    = "listcustomer"
   role             = var.iam_role_arn

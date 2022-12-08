@@ -78,6 +78,22 @@ resource "aws_api_gateway_integration" "deletecustomer" {
   integration_http_method = "POST"
 }
 
+resource "aws_api_gateway_method" "updatecustomer" {
+  rest_api_id   = aws_api_gateway_rest_api.api.id
+  resource_id   = aws_api_gateway_resource.customers_id.id
+  http_method   = "PUT"
+  authorization = "NONE"
+}
+
+resource "aws_api_gateway_integration" "updatecustomer" {
+  rest_api_id             = aws_api_gateway_rest_api.api.id
+  resource_id             = aws_api_gateway_resource.customers_id.id
+  http_method             = aws_api_gateway_method.updatecustomer.http_method
+  type                    = "AWS_PROXY"
+  uri                     = var.lambda_updatecustomer_invokearn
+  integration_http_method = "POST"
+}
+
 
 resource "aws_api_gateway_deployment" "main" {
   rest_api_id = aws_api_gateway_rest_api.api.id
@@ -91,5 +107,7 @@ resource "aws_api_gateway_deployment" "main" {
     aws_api_gateway_integration.listcustomer,
     aws_api_gateway_method.deletecustomer,
     aws_api_gateway_integration.deletecustomer,
+    aws_api_gateway_integration.updatecustomer,
+    aws_api_gateway_method.updatecustomer,
   ]
 }

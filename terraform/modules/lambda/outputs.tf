@@ -2,6 +2,10 @@ output "lambda_createcustomer_invokearn" {
   value = aws_lambda_function.createcustomer.invoke_arn
 }
 
+output "lambda_updatecustomer_invokearn" {
+  value = aws_lambda_function.updatecustomer.invoke_arn
+}
+
 output "lambda_listcustomer_invokearn" {
   value = aws_lambda_function.listcustomer.invoke_arn
 }

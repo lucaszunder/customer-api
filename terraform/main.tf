@@ -1,6 +1,6 @@
 terraform {
-  required_version = ">= 1.4.0"
-    required_providers {
+  required_version = ">= 1.0.0"
+  required_providers {
     aws = {
       source  = "hashicorp/aws"
       version = "~> 3.0"
@@ -31,10 +31,11 @@ provider "aws" {
   s3_force_path_style         = true
 
   endpoints {
-    iam            = "http://localhost:4566"
-    apigateway     = "http://localhost:4566"
-    dynamodb       = "http://localhost:4566"
-    lambda         = "http://localhost:4566"
+    iam        = "http://localhost:4566"
+    apigateway = "http://localhost:4566"
+    dynamodb   = "http://localhost:4566"
+    lambda     = "http://localhost:4566"
+    s3         = "http://localhost:4566"
   }
 }
 
@@ -52,6 +53,7 @@ module "apigateway" {
   source = "./modules/apigateway"
 
   lambda_createcustomer_invokearn = module.lambda.lambda_createcustomer_invokearn
+  lambda_updatecustomer_invokearn = module.lambda.lambda_updatecustomer_invokearn
   lambda_listcustomer_invokearn   = module.lambda.lambda_listcustomer_invokearn
   lambda_getcustomer_invokearn    = module.lambda.lambda_getcustomer_invokearn
   lambda_deletecustomer_invokearn = module.lambda.lambda_deletecustomer_invokearn

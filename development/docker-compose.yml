@@ -17,4 +17,7 @@ services:
     volumes:
       - '${TEMPDIR:-/tmp/localstack}:/var/lib/localstack'
       - '/var/run/docker.sock:/var/run/docker.sock'
+      - ../:/localstack
+      #- './scriptToDeploy:/docker-entrypoint-initaws.d/'
     working_dir: /localstack
+    command: yarn zip
