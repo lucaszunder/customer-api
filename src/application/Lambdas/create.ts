@@ -9,7 +9,7 @@ export const handler = async (
   const createCustomer = new CreateCustomerFactory().make();
   const { name, email } = typeof event.body === 'string' ? JSON.parse(event.body) : event.body;
 
-  const newCustomer = await createCustomer.handle({ name, email });
+  const newCustomer = await createCustomer.handle(name, email);
 
   console.log(newCustomer);
 

@@ -1,5 +1,5 @@
 import { CustomerRepository } from '../../domain/repositories/Customer';
-import CreateCustomerUseCase from '../../useCases/CreateCustomer/CreateCustomer';
+import CreateCustomerUseCase from '../../useCases/CreateCustomer';
 
 export default class CreateCustomerFactory {
   make() {

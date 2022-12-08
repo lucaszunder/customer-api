@@ -3,9 +3,9 @@ interface ILambdaResponse {
   body: string;
 }
 
-export function buildError(stack: string | Error, status: number): ILambdaResponse {
+export function buildError(message: string, status: number): ILambdaResponse {
   return {
     statusCode: status,
-    body: JSON.stringify(stack),
+    body: JSON.stringify({ message }),
   };
 }

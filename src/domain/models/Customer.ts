@@ -1,5 +1,6 @@
 export interface ICustomer {
-  customer_id: string;
-  name: string;
-  email: string;
+  entity: string;
+  customer_id: string | undefined;
+  name: string | undefined;
+  email: string | undefined;
 }
