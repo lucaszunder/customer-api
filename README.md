@@ -60,5 +60,4 @@ Melhorias a serem realizadas:
   - list - Uma melhoria a ser implementada seria a paginacão dos dados.
 - Poderia ser criado um módulo cloudwatch e uma camada de logger na aplicacão para o envio dos logs para ele.
 - Para producão não esquecer de configurar o x-ray para monitorar as requests.
-- CI no Github Actions
-- CD no Github Actions
+
