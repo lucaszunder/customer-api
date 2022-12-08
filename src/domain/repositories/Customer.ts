@@ -7,7 +7,7 @@ export class CustomerRepository {
   constructor() {
     this.dynamoClient = new AWS.DynamoDB.DocumentClient({
       region: 'us-east-1',
-      endpoint: 'http://172.19.0.2:4566',
+      endpoint: `http://${process.env.LOCALSTACK_HOSTNAME}:4566`,
     });
   }
 

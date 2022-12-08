@@ -16,7 +16,11 @@ De inicio rode o comando:
 
 `docker-compose -f ./development/docker-compose.yml up -d`
 
-Este comando irá inicializar toda a estrutura do localstack. Depois disso rode o comando:
+Este comando irá inicializar toda a estrutura do localstack. Depois instale o projeto:
+
+`yarn`
+
+e por fim rode o comando:
 
 `yarn deploy:localstack`
 
