@@ -21,14 +21,14 @@ describe('Test useCase ListCustomer #unit', () => {
         name: faker.datatype.string(10),
         email: faker.datatype.string(10),
       };
-      let search
+      let search;
 
       const newCustomer = await createCustomerUseCase.handle(body.name, body.email);
       const customerRepositorySpy = jest.spyOn(customerRepository, 'list');
-      console.log(newCustomer)
+      console.log(newCustomer);
 
       const customerResponse = await listCustomerUseCase.handle(search);
-      console.log(customerResponse)
+      console.log(customerResponse);
       expect(customerRepositorySpy).toHaveBeenCalled();
       expect(customerResponse.body).toBe(`[${newCustomer.body}]`);
     });

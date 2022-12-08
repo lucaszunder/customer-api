@@ -17,7 +17,6 @@ describe('Test useCase CreateCustomer #unit', () => {
       const name = faker.datatype.string(10);
       const email = faker.datatype.string(15);
 
-      
       const customerRepositorySpy = jest.spyOn(customerRepository, 'update');
       //@ts-ignore
       const customerResponse = await createCustomerUseCase.handle(name, email);
@@ -29,17 +28,16 @@ describe('Test useCase CreateCustomer #unit', () => {
 
   describe('Error Scenarios', () => {
     it('should not create a customer when name is not provided', async () => {
-      const name = undefined
+      const name = undefined;
       const email = faker.datatype.string(15);
 
-      
       const customerRepositorySpy = jest.spyOn(customerRepository, 'update');
       //@ts-ignore
       const customerResponse = await createCustomerUseCase.handle(name, email);
 
       expect(customerRepositorySpy).not.toHaveBeenCalled();
       expect(customerResponse.statusCode).toBe(400);
-      expect(customerResponse.body).toBe(JSON.stringify({message: 'O campo nome ou email não está preenchido'}));
+      expect(customerResponse.body).toBe(JSON.stringify({ message: 'O campo nome ou email não está preenchido' }));
     });
   });
 
@@ -48,14 +46,13 @@ describe('Test useCase CreateCustomer #unit', () => {
       const name = faker.datatype.string(10);
       const email = undefined;
 
-      
       const customerRepositorySpy = jest.spyOn(customerRepository, 'update');
       //@ts-ignore
       const customerResponse = await createCustomerUseCase.handle(name, email);
 
       expect(customerRepositorySpy).not.toHaveBeenCalled();
       expect(customerResponse.statusCode).toBe(400);
-      expect(customerResponse.body).toBe(JSON.stringify({message:'O campo nome ou email não está preenchido'}));
+      expect(customerResponse.body).toBe(JSON.stringify({ message: 'O campo nome ou email não está preenchido' }));
     });
   });
 });

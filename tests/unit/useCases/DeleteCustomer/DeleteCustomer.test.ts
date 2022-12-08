@@ -25,12 +25,12 @@ describe('Test useCase DeleteCustomer #unit', () => {
       const newCustomer = await createCustomerUseCase.handle(body.name, body.email);
       const customerRepositorySpy = jest.spyOn(customerRepository, 'delete');
       const customerBody = JSON.parse(newCustomer.body);
-      console.log(customerBody)
+      console.log(customerBody);
       //@ts-ignore
       const customerResponse = await deleteCustomerUseCase.handle(customerBody.customer_id);
 
       expect(customerRepositorySpy).toHaveBeenCalled();
-      expect(customerResponse.body).toBe(JSON.stringify({message: "Usuário deletado com sucesso"}));
+      expect(customerResponse.body).toBe(JSON.stringify({ message: 'Usuário deletado com sucesso' }));
     });
   });
 
@@ -41,7 +41,7 @@ describe('Test useCase DeleteCustomer #unit', () => {
 
       expect(customerRepositorySpy).not.toHaveBeenCalled();
       expect(customerResponse.statusCode).toBe(400);
-      expect(customerResponse.body).toBe(JSON.stringify({message: 'ID do usuário não informado'}));
+      expect(customerResponse.body).toBe(JSON.stringify({ message: 'ID do usuário não informado' }));
     });
   });
 });

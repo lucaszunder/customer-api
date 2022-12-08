@@ -10,7 +10,7 @@ export default class CustomerRepository {
     return { Items: customers };
   }
   search(term: string) {
-    return { Items: customers.includes(term) }
+    return { Items: customers.includes(term) };
   }
   delete(entity: string, customer_id: string) {
     customers = customers.filter((customer) => customer.customer_id !== customer_id && customer.entity === entity);
