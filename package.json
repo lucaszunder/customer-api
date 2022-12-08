@@ -9,6 +9,8 @@
     "pre:zip": "rm -f ./terraform/build.zip && yarn build && cp package*.json build/",
     "zip": "yarn pre:zip && cd build && yarn --production=true && zip -r ../terraform/build.zip .",
     "format": "eslint --fix . && prettier --write .",
+    "lint:tsc": "tsc --project tsconfig.json --noEmit",
+    "lint": "yarn lint:tsc && eslint . && prettier --check \"src/**/*.(ts|tsx)\"",
     "publish:terraform": "cd terraform/remote-state && terraform init -input=false && terraform apply -input=false -auto-approve && cd .. && terraform init -input=false && terraform apply -input=false -auto-approve",
     "deploy:localstack": "yarn zip && yarn publish:terraform"
   },
